@@ -13,7 +13,7 @@ def login(driver):
     driver.find_element_by_id('txtPassword').send_keys('write your password here')
 
     driver.find_element_by_id('btnLogin').click()
-    time.sleep(0.2)
+    time.sleep(0.5)
 
 def logout(driver):
     driver.find_element_by_id('D_Header1_btnLogout').click()

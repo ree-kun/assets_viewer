@@ -14,7 +14,7 @@ def login(driver):
     driver.find_element_by_xpath('//*[@id="password_input"]/input').send_keys('write your password here')
 
     driver.find_element_by_xpath('//*[@id="SUBAREA01"]/form/div/div/div/p[2]/a/input').click()
-    time.sleep(0.2)
+    time.sleep(1)
 
 def logout(driver):
     driver.find_element_by_xpath('//*[@id="logoutM"]/a').click()
@@ -26,17 +26,17 @@ def open_nisa(driver):
 
 def get_amount_on_nisa(driver):
     rows = driver.find_elements_by_xpath('//*[@id="fundBalanceDiv"]/table/tbody/tr')
-    for row in rows[:-1]:
+    for i, row in enumerate(rows[:-1]):
         tds = row.find_elements_by_css_selector('td')
         atag = tds[0].find_element_by_css_selector('a')
         print(atag.text)
         print(tds[6].text)
         atag.send_keys(Keys.COMMAND + Keys.RETURN)
 
-    for i in range(len(rows[:-1])):
         driver.switch_to.window(driver.window_handles[i + 1])
         update_date = driver.find_element_by_xpath('//*[@id="MAINAREA02_780"]/div[2]/div[1]/div/div/div/div/div/div/div/table/tbody/tr[1]/td[2]/div/div[3]').text
         print(update_date)
+        driver.switch_to.window(driver.window_handles[0])
 
 
 driver = open_sbi_page()
